@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>СмеТанник — кофе, выпечка, десерты</title>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Nunito:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FFF8EE;
+    --warm: #F5E6CC;
+    --brown: #5C3B1E;
+    --caramel: #C8854A;
+    --gold: #E8A83E;
+    --dark: #2E1A0E;
+    --text: #3D2510;
+    --soft: #F9F0E0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #2E1A0E 0%, #5C3B1E 50%, #8B5E3C 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 40px 20px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C8854A' fill-opacity='0.07'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Floating food emojis */
+  .float-item {
+    position: absolute;
+    font-size: 2.5rem;
+    opacity: 0.15;
+    animation: floatAround 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .float-item:nth-child(1) { top: 8%; left: 5%; animation-delay: 0s; }
+  .float-item:nth-child(2) { top: 15%; right: 8%; animation-delay: 1.5s; font-size: 2rem; }
+  .float-item:nth-child(3) { top: 70%; left: 3%; animation-delay: 3s; font-size: 3rem; }
+  .float-item:nth-child(4) { top: 80%; right: 5%; animation-delay: 0.8s; }
+  .float-item:nth-child(5) { top: 40%; left: 2%; animation-delay: 2s; font-size: 2rem; }
+  .float-item:nth-child(6) { top: 55%; right: 3%; animation-delay: 4s; font-size: 2rem; }
+  .float-item:nth-child(7) { top: 25%; left: 10%; animation-delay: 1s; font-size: 1.8rem; }
+  .float-item:nth-child(8) { top: 65%; right: 10%; animation-delay: 2.5s; font-size: 1.8rem; }
+
+  @keyframes floatAround {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-15px) rotate(5deg); }
+    50% { transform: translateY(-8px) rotate(-3deg); }
+    75% { transform: translateY(-20px) rotate(2deg); }
+  }
+
+  .hero-logo {
+    width: 500px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 70px;
+    
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-logo .logo-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .logo-name {
+    font-size: 1.7rem;
+    color: var(--brown);
+    letter-spacing: -1px;
+  }
+
+  .logo-sub {
+    font-size: 0.55rem;
+    color: var(--caramel);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 8px rgba(200,133,74,0.3), 0 0 0 16px rgba(200,133,74,0.1); }
+    50% { box-shadow: 0 0 0 12px rgba(200,133,74,0.4), 0 0 0 24px rgba(200,133,74,0.15); }
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    color: var(--cream);
+    text-align: center;
+    line-height: 1.1;
+    position: relative;
+    z-index: 1;
+    animation: slideUp 0.8s ease both;
+  }
+
+  .hero-title span {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-tagline {
+    font-family: 'Comfortaa', cursive;
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    color: rgba(255,248,238,0.75);
+    text-align: center;
+    margin-top: 16px;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+    animation: slideUp 0.8s 0.2s ease both;
+  }
+
+  .hero-chips {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    animation: slideUp 0.8s 0.4s ease both;
+  }
+
+  .chip {
+    background: rgba(255,248,238,0.12);
+    border: 1px solid rgba(200,133,74,0.5);
+    color: var(--warm);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-family: 'Comfortaa', cursive;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+  }
+  .chip:hover {
+    background: var(--caramel);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .hero-cta {
+    margin-top: 40px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    animation: slideUp 0.8s 0.6s ease both;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--dark);
+    padding: 16px 36px;
+    border-radius: 50px;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 8px 30px rgba(232,168,62,0.4);
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(232,168,62,0.6);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--cream);
+    padding: 16px 36px;
+    border-radius: 50px;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 2px solid rgba(255,248,238,0.4);
+    transition: all 0.3s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-3px);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,248,238,0.4);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,248,238,0.4), transparent);
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== SECTION BASE ===== */
+  section { padding: 80px 20px; }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'Comfortaa', cursive;
+    font-size: 0.8rem;
+    color: var(--caramel);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--brown);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  /* ===== WHY US ===== */
+  .why {
+    background: var(--soft);
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 50px;
+  }
+
+  .why-card {
+    background: white;
+    border-radius: 24px;
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(92,59,30,0.07);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 1px solid rgba(200,133,74,0.1);
+  }
+  .why-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(92,59,30,0.15);
+    border-color: var(--gold);
+  }
+
+  .why-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .why-card h3 {
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--brown);
+    margin-bottom: 10px;
+  }
+
+  .why-card p {
+    font-size: 0.9rem;
+    color: #8a7060;
+    line-height: 1.6;
+  }
+
+  /* ===== VEGAS ===== */
+  .vegas {
+    background: linear-gradient(135deg, #2E1A0E, #4a2c14);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .vegas::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(200,133,74,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .vegas-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 768px) {
+    .vegas-inner { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  .vegas-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+  }
+
+  .vegas .section-title { color: white; }
+
+  .vegas-text p {
+    color: rgba(255,248,238,0.7);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+
+  .vegas-features {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .vegas-feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Comfortaa', cursive;
+    font-size: 0.95rem;
+    color: rgba(255,248,238,0.85);
+  }
+
+  .vegas-feature::before {
+    content: '✓';
+    width: 28px;
+    height: 28px;
+    background: var(--gold);
+    color: var(--dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  .vegas-visual {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(200,133,74,0.3);
+    border-radius: 32px;
+    padding: 40px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+
+  .vegas-logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--gold);
+    font-style: italic;
+    letter-spacing: -1px;
+  }
+
+  .vegas-subtitle {
+    font-family: 'Comfortaa', cursive;
+    font-size: 0.8rem;
+    color: rgba(255,248,238,0.5);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .vegas-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--caramel);
+    margin: 20px auto;
+  }
+
+  .vegas-stat {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .vegas-stat-label {
+    font-family: 'Comfortaa', cursive;
+    font-size: 0.8rem;
+    color: rgba(255,248,238,0.6);
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  /* ===== MENU ===== */
+  .menu { background: var(--cream); }
+
+  .menu-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 30px 0;
+  }
+
+  .tab-btn {
+    padding: 10px 24px;
+    border-radius: 50px;
+    border: 2px solid rgba(200,133,74,0.3);
+    background: white;
+    color: var(--text);
+    font-family: 'Comfortaa', cursive;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .tab-btn:hover, .tab-btn.active {
+    background: var(--caramel);
+    color: white;
+    border-color: var(--caramel);
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .menu-panel { display: none; }
+  .menu-panel.active { display: block; }
+
+  .menu-item {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 2px 12px rgba(92,59,30,0.06);
+    transition: all 0.3s;
+    border: 1px solid transparent;
+  }
+  .menu-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(92,59,30,0.12);
+    border-color: rgba(200,133,74,0.2);
+  }
+
+  .item-emoji {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    background: var(--soft);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .item-info { flex: 1; }
+
+  .item-name {
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--brown);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .item-desc {
+    font-size: 0.78rem;
+    color: #9a8070;
+    line-height: 1.4;
+  }
+
+  .item-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--caramel);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .price-from {
+    font-size: 0.65rem;
+    color: #aaa;
+    font-family: 'Nunito', sans-serif;
+    display: block;
+    text-align: right;
+  }
+
+  /* ===== INTERIOR ===== */
+  .interior {
+    background: var(--soft);
+  }
+
+  .interior-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 640px) {
+    .interior-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .interior-card {
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    background: var(--warm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    box-shadow: 0 4px 20px rgba(92,59,30,0.1);
+    transition: transform 0.4s;
+    position: relative;
+  }
+  .interior-card:hover { transform: scale(1.03); }
+  .interior-card:first-child { grid-column: span 2; grid-row: span 1; font-size: 5rem; }
+
+  .interior-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(46,26,14,0.8), transparent);
+    color: white;
+    font-family: 'Comfortaa', cursive;
+    font-size: 0.85rem;
+    padding: 16px 16px 12px;
+  }
+
+  /* ===== PROMO ===== */
+  .promo {
+    background: linear-gradient(135deg, var(--gold), var(--caramel));
+    text-align: center;
+    padding: 60px 20px;
+  }
+
+  .promo h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: white;
+    margin-bottom: 16px;
+  }
+
+  .promo p {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 500px;
+    margin: 0 auto 32px;
+    line-height: 1.7;
+  }
+
+  .promo-cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .promo-card {
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 20px;
+    padding: 24px 28px;
+    color: white;
+    backdrop-filter: blur(10px);
+    min-width: 200px;
+    transition: all 0.3s;
+  }
+  .promo-card:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-4px);
+  }
+
+  .promo-card .promo-icon { font-size: 2.5rem; margin-bottom: 10px; }
+  .promo-card h3 { font-family: 'Comfortaa', cursive; font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+  .promo-card p { font-size: 0.85rem; opacity: 0.85; margin: 0; }
+
+  .btn-white {
+    background: white;
+    color: var(--caramel);
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  }
+  .btn-white:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.2);
+  }
+
+  /* ===== CONTACT ===== */
+  .contact {
+    background: var(--dark);
+    color: white;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  .contact .section-title { color: white; }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .contact-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(200,133,74,0.2);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    border: 1px solid rgba(200,133,74,0.3);
+  }
+
+  .contact-label {
+    font-family: 'Comfortaa', cursive;
+    font-size: 0.75rem;
+    color: var(--caramel);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .contact-value {
+    font-size: 1rem;
+    color: rgba(255,248,238,0.85);
+    line-height: 1.5;
+  }
+
+  .map-placeholder {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(200,133,74,0.2);
+    border-radius: 24px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    color: rgba(255,248,238,0.5);
+    font-family: 'Comfortaa', cursive;
+    font-size: 0.9rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .map-placeholder:hover {
+    background: rgba(200,133,74,0.1);
+    border-color: var(--caramel);
+  }
+  .map-pin { font-size: 3rem; margin-bottom: 8px; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #1a0d06;
+    padding: 30px 20px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .footer-sub {
+    font-size: 0.8rem;
+    color: rgba(255,248,238,0.3);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .footer-line {
+    width: 40px;
+    height: 1px;
+    background: var(--caramel);
+    margin: 16px auto;
+    opacity: 0.4;
+  }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(255,248,238,0.2);
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.4s;
+  }
+
+  nav.scrolled {
+    background: rgba(46,26,14,0.95);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .nav-logo {
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: white;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+  }
+
+  .nav-links a {
+    color: rgba(255,248,238,0.7);
+    text-decoration: none;
+    font-family: 'Comfortaa', cursive;
+    font-size: 0.85rem;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ===== ANIMATIONS ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    section { padding: 60px 20px; }
+    .menu-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">СмеТанник</a>
+  <ul class="nav-links">
+    <li><a href="#menu">Меню</a></li>
+    <li><a href="#vegas">Кофе</a></li>
+    <li><a href="#contact">Контакты</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="float-item">🧁</div>
+  <div class="float-item">☕</div>
+  <div class="float-item">🍰</div>
+  <div class="float-item">🥐</div>
+  <div class="float-item">🍩</div>
+  <div class="float-item">🎂</div>
+  <div class="float-item">🍪</div>
+  <div class="float-item">🥖</div>
+
+  <div class="hero-logo">
+    <img src="images/logo.png" alt="Сметанник" width=85%>
+  </div>
+
+  <h1 class="hero-title">Вкус, который<br><span>согревает</span></h1>
+  <p class="hero-tagline">Домашняя выпечка, торты и кофе — рядом с вами</p>
+
+  <div class="hero-chips">
+    <span class="chip">☕ Кофе Vegas To Go</span>
+    <span class="chip">🧁 Пирожные</span>
+    <span class="chip">🎂 Торты</span>
+    <span class="chip">🥖 Свежая выпечка</span>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#menu" class="btn-primary">Смотреть меню</a>
+    <a href="#contact" class="btn-secondary">Как нас найти</a>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>листать</span>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="about">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Почему СмеТанник</p>
+      <h2 class="section-title">Всё, что нужно<br>для хорошего дня</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <span class="why-icon">🏠</span>
+        <h3>Домашние рецепты</h3>
+        <p>Выпечка и десерты от настоящей домашней пекарни — как у бабушки, только рядом</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon">☕</span>
+        <h3>Кофе за 60 секунд</h3>
+        <p>Автомат Vegas To Go готовит настоящий кофе быстро и вкусно — бери и иди!</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon">🍰</span>
+        <h3>Огромный выбор</h3>
+        <p>Пирожные, торты, печенье, булочки, пирожки — на любой вкус и настроение</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon">📦</span>
+        <h3>Возьми с собой</h3>
+        <p>Удобная упаковка для десертов и кофе — всё готово для быстрого перекуса в дороге</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon">💝</span>
+        <h3>Торты на заказ</h3>
+        <p>Медовики, Наполеон, Красный бархат — для особых событий и просто так</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon">💰</span>
+        <h3>Доступные цены</h3>
+        <p>Вкусно и не дорого. Пирожное от 0,99 руб., булочка от 0,58 руб.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VEGAS -->
+<section class="vegas" id="vegas">
+  <div class="container">
+    <div class="vegas-inner">
+      <div class="vegas-text reveal">
+        <span class="vegas-badge">⚡ Новинка в нашем кафе</span>
+        <h2 class="section-title">Кофейный автомат<br>Vegas To Go</h2>
+        <p>Профессиональный кофе без очереди! Vegas To Go — это современный автомат, который готовит настоящий свежемолотый кофе всего за 60 секунд.</p>
+        <div class="vegas-features">
+          <div class="vegas-feature">Свежемолотые зёрна — не порошок</div>
+          <div class="vegas-feature">Эспрессо, капучино, латте и другие напитки</div>
+          <div class="vegas-feature">Добавь сироп по вкусу</div>
+          <div class="vegas-feature">Готово за 60 секунд</div>
+          <div class="vegas-feature">Удобный стакан с собой</div>
+        </div>
+      </div>
+      <div class="vegas-visual reveal">
+        <div class="vegas-logo-text">Vegas to go</div>
+        <div class="vegas-subtitle">coffee machine</div>
+        <div class="vegas-divider"></div>
+        <div class="vegas-stat">60</div>
+        <div class="vegas-stat-label">секунд — и кофе готов</div>
+        <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(200,133,74,0.2);">
+          <div style="font-family:'Comfortaa',cursive; font-size:0.8rem; color:rgba(255,248,238,0.5); letter-spacing:2px; text-transform:uppercase; margin-bottom: 8px;">Слоган автомата</div>
+          <div style="font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--gold); font-style:italic;">"Сделай кофе как профи"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Наше меню</p>
+      <h2 class="section-title">Что вас ждёт<br>в СмеТаннике</h2>
+    </div>
+    <div class="menu-tabs">
+      <button class="tab-btn active" onclick="showTab('pastry')">🧁 Пирожные</button>
+      <button class="tab-btn" onclick="showTab('cakes')">🎂 Торты</button>
+      <button class="tab-btn" onclick="showTab('cookies')">🍪 Печенье и сладости</button>
+      <button class="tab-btn" onclick="showTab('buns')">🥐 Булочки и выпечка</button>
+      <button class="tab-btn" onclick="showTab('savory')">🥖 Хлеб и пирожки</button>
+    </div>
+
+    <!-- Пирожные -->
+    <div id="pastry" class="menu-panel active">
+      <div class="menu-grid">
+        <div class="menu-item"><div class="item-emoji">🥐</div><div class="item-info"><div class="item-name">Вафельные трубочки</div><div class="item-desc">Вафельная трубочка с варёной сгущёнкой</div></div><div class="item-price">1,98 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🍫</div><div class="item-info"><div class="item-name">Картошка</div><div class="item-desc">Шоколадный бисквит со сливочным кремом и коньяком</div></div><div class="item-price">1,28 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🍭</div><div class="item-info"><div class="item-name">Кейкпопс</div><div class="item-desc">Нежная песочная крошка со сгущёнкой в шоколаде</div></div><div class="item-price">1,38 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🌿</div><div class="item-info"><div class="item-name">Эклер Фисташка</div><div class="item-desc">Заварное пирожное с фисташковым кремом</div></div><div class="item-price">1,52 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🧺</div><div class="item-info"><div class="item-name">Корзиночка с белковым кремом</div><div class="item-desc">Песочная корзиночка с белковым кремом и повидлом</div></div><div class="item-price">1,38 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🐜</div><div class="item-info"><div class="item-name">Муравейник</div><div class="item-desc">Песочная крошка с варёной сгущёнкой и грецкими орехами</div></div><div class="item-price">1,78 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🍮</div><div class="item-info"><div class="item-name">Тарт Солёная карамель</div><div class="item-desc">Песочная основа, шоколадная паста, карамель, арахис</div></div><div class="item-price">1,79 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">☕</div><div class="item-info"><div class="item-name">Тарт Шоколадный капучино</div><div class="item-desc">Шоколадная основа, ванильное суфле, крем капучино</div></div><div class="item-price">1,79 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🍩</div><div class="item-info"><div class="item-name">Кольцо заварное</div><div class="item-desc">Лёгкое заварное пирожное с начинкой крем-чиз</div></div><div class="item-price">1,75 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🍰</div><div class="item-info"><div class="item-name">Наполеон (весовой)</div><div class="item-desc">Домашние слоёные коржи со сметанным кремом</div></div><div class="item-price"><span class="price-from">за кг</span>14,80 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🍯</div><div class="item-info"><div class="item-name">Медовик Домашний</div><div class="item-desc">Медовые коржи с нежным сметанным кремом и шоколадом</div></div><div class="item-price"><span class="price-from">за кг</span>13,90 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🫐</div><div class="item-info"><div class="item-name">Сметанно-ягодное искушение</div><div class="item-desc">Песочный пирог со сметанным кремом и ягодами в желе</div></div><div class="item-price"><span class="price-from">за кг</span>16,50 р.</div></div>
+      </div>
+    </div>
+
+    <!-- Торты -->
+    <div id="cakes" class="menu-panel">
+      <div class="menu-grid">
+        <div class="menu-item"><div class="item-emoji">👑</div><div class="item-info"><div class="item-name">Императрица</div><div class="item-desc">Шоколадный бисквит с карамельным кремом и варёной сгущёнкой</div></div><div class="item-price"><span class="price-from">за кг</span>14,80 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">💜</div><div class="item-info"><div class="item-name">Лаванда</div><div class="item-desc">Лавандовый бисквит со сливочно-йогуртовым кремом и брусникой</div></div><div class="item-price"><span class="price-from">за кг</span>14,80 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🍫</div><div class="item-info"><div class="item-name">Любимый вкус</div><div class="item-desc">Шоколадный бисквит с шоколадным кремом и вкусом пломбира</div></div><div class="item-price"><span class="price-from">за кг</span>13,80 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">❤️</div><div class="item-info"><div class="item-name">Красный бархат</div><div class="item-desc">Красный бисквит с нежным крем-чизом</div></div><div class="item-price"><span class="price-from">за кг</span>16,50 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🏛️</div><div class="item-info"><div class="item-name">Киевский</div><div class="item-desc">Воздушно-ореховые коржи с шоколадным масляным кремом</div></div><div class="item-price"><span class="price-from">за кг</span>16,80 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🍓</div><div class="item-info"><div class="item-name">Творожная нежность</div><div class="item-desc">Ванильный бисквит с творожно-сливочным кремом и малиной</div></div><div class="item-price"><span class="price-from">за кг</span>15,80 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🌸</div><div class="item-info"><div class="item-name">Фисташка-Малина</div><div class="item-desc">Фисташковый крем с прослойкой малинового конфи</div></div><div class="item-price"><span class="price-from">за кг</span>14,60 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🍪</div><div class="item-info"><div class="item-name">Хрустящий Кранч</div><div class="item-desc">Шоколадный бисквит, ванильное суфле, хрустящая карамель</div></div><div class="item-price"><span class="price-from">за кг</span>14,60 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">☕</div><div class="item-info"><div class="item-name">Вупи-Пай</div><div class="item-desc">Кофейно-шоколадные коржи, крем-чиз, шоколадно-ореховая паста</div></div><div class="item-price"><span class="price-from">за кг</span>15,90 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🍭</div><div class="item-info"><div class="item-name">Натали</div><div class="item-desc">Шоколадные бисквиты с масляным кремом и халвой</div></div><div class="item-price"><span class="price-from">за кг</span>11,80 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">💋</div><div class="item-info"><div class="item-name">Сплетница</div><div class="item-desc">Шоколадные бисквиты с малиновым кремом и варёной сгущёнкой</div></div><div class="item-price"><span class="price-from">за кг</span>12,80 р.</div></div>
+      </div>
+    </div>
+
+    <!-- Печенье -->
+    <div id="cookies" class="menu-panel">
+      <div class="menu-grid">
+        <div class="menu-item"><div class="item-emoji">🍪</div><div class="item-info"><div class="item-name">Печенье Королевское</div><div class="item-desc">Нежное песочное печенье с шоколадом</div></div><div class="item-price"><span class="price-from">за кг</span>8,90 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🌾</div><div class="item-info"><div class="item-name">Печенье Минутка</div><div class="item-desc">Нежное песочное печенье</div></div><div class="item-price"><span class="price-from">за кг</span>8,40 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🏡</div><div class="item-info"><div class="item-name">Печенье По-домашнему</div><div class="item-desc">Фигурное песочное печенье (постное)</div></div><div class="item-price"><span class="price-from">за кг</span>7,90 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🥜</div><div class="item-info"><div class="item-name">Орешки домашние</div><div class="item-desc">Домашние песочные орешки с варёной сгущёнкой</div></div><div class="item-price"><span class="price-from">за кг</span>17,80 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🍑</div><div class="item-info"><div class="item-name">Сладость Персики</div><div class="item-desc">Песочная основа с варёной сгущёнкой</div></div><div class="item-price"><span class="price-from">за кг</span>16,90 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🍩</div><div class="item-info"><div class="item-name">Творожные пончики</div><div class="item-desc">Домашние творожные пончики в сахарной пудре</div></div><div class="item-price"><span class="price-from">за кг</span>13,90 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🌀</div><div class="item-info"><div class="item-name">Гребешки с абрикосом</div><div class="item-desc">Дрожжевое тесто с абрикосовым повидлом</div></div><div class="item-price"><span class="price-from">за кг</span>9,80 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🤍</div><div class="item-info"><div class="item-name">Сладости Воздушные</div><div class="item-desc">Взбитые яичные белки с сахаром</div></div><div class="item-price"><span class="price-from">за кг</span>17,90 р.</div></div>
+      </div>
+    </div>
+
+    <!-- Булочки -->
+    <div id="buns" class="menu-panel">
+      <div class="menu-grid">
+        <div class="menu-item"><div class="item-emoji">🍩</div><div class="item-info"><div class="item-name">Берлинер со сгущёнкой</div><div class="item-desc">Воздушный пончик с варёной сгущёнкой</div></div><div class="item-price">1,28 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🍫</div><div class="item-info"><div class="item-name">Берлинер с шоколадом</div><div class="item-desc">Воздушный пончик с шоколадной начинкой</div></div><div class="item-price">1,28 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🌀</div><div class="item-info"><div class="item-name">Булочка Ароматная</div><div class="item-desc">Сдобная завёрнутая булочка с корицей</div></div><div class="item-price">0,74 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🫐</div><div class="item-info"><div class="item-name">Ватрушка ягодная</div><div class="item-desc">Открытая булочка с творожно-сметанной начинкой и ягодами</div></div><div class="item-price">1,28 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🍦</div><div class="item-info"><div class="item-name">Булочка Сметанник</div><div class="item-desc">Открытая булочка со сметанной начинкой</div></div><div class="item-price">0,98 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🌿</div><div class="item-info"><div class="item-name">Булочка Чайная с творогом</div><div class="item-desc">Сдобный конвертик с творожной начинкой</div></div><div class="item-price">0,89 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🎠</div><div class="item-info"><div class="item-name">Улитка с маком</div><div class="item-desc">Сдобная завёрнутая булочка с маковой начинкой</div></div><div class="item-price">0,98 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🍋</div><div class="item-info"><div class="item-name">Сочник с творогом</div><div class="item-desc">Песочное тесто с творожной начинкой</div></div><div class="item-price">0,99 р.</div></div>
+      </div>
+    </div>
+
+    <!-- Хлеб и пирожки -->
+    <div id="savory" class="menu-panel">
+      <div class="menu-grid">
+        <div class="menu-item"><div class="item-emoji">🍞</div><div class="item-info"><div class="item-name">Хлеб Минский солодовый</div><div class="item-desc">Пшеничная и ржаная мука на закваске с солодом и семечками</div></div><div class="item-price">1,25 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🥖</div><div class="item-info"><div class="item-name">Чиабатта</div><div class="item-desc">Пористая булка из пшеничной муки на закваске</div></div><div class="item-price">1,38 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🌿</div><div class="item-info"><div class="item-name">Багет Французский с зеленью</div><div class="item-desc">На закваске с чесноком и укропом</div></div><div class="item-price">1,38 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🧀</div><div class="item-info"><div class="item-name">Багет Сырный</div><div class="item-desc">С сыром, паприкой, пряными травами и чесноком</div></div><div class="item-price">1,98 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🫓</div><div class="item-info"><div class="item-name">Лепёшка Сырная</div><div class="item-desc">Из пшеничной муки с сырной начинкой</div></div><div class="item-price">2,08 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🌶️</div><div class="item-info"><div class="item-name">Лепёшка Начо</div><div class="item-desc">С сыром, пряными травами, чесноком и паприкой</div></div><div class="item-price">2,08 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🌭</div><div class="item-info"><div class="item-name">Сосиска в тесте</div><div class="item-desc">Молочная сосиска в/с, завёрнутая в тесто</div></div><div class="item-price">1,88 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🍕</div><div class="item-info"><div class="item-name">Пицца с колбасой</div><div class="item-desc">С сервелатом, сыром, огурцами, кетчупом</div></div><div class="item-price">2,78 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🍒</div><div class="item-info"><div class="item-name">Пирожки с вишней</div><div class="item-desc">Запечённые пирожки с вишнёвой начинкой</div></div><div class="item-price">0,98 р.</div></div>
+        <div class="menu-item"><div class="item-emoji">🥬</div><div class="item-info"><div class="item-name">Пирожки с капустой</div><div class="item-desc">Запечённые пирожки с тушёной капустой</div></div><div class="item-price">0,92 р.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERIOR -->
+<section class="interior">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Наш уголок</p>
+      <h2 class="section-title">Уютная атмосфера<br>ждёт вас</h2>
+    </div>
+    <div class="interior-grid">
+      <div class="interior-card reveal" style="background: linear-gradient(135deg, #f5e6cc, #e8d0b0);">
+        <span>🏪</span>
+        <div class="interior-label">Стеклянная витрина с десертами</div>
+      </div>
+      <div class="interior-card reveal" style="background: linear-gradient(135deg, #3d2510, #5c3b1e);">
+        <span style="filter:grayscale(0)">☕</span>
+        <div class="interior-label">Vegas To Go</div>
+      </div>
+      <div class="interior-card reveal" style="background: linear-gradient(135deg, #c8854a, #e8a83e);">
+        <span>🥐</span>
+        <div class="interior-label">Свежая выпечка каждый день</div>
+      </div>
+      <div class="interior-card reveal" style="background: linear-gradient(135deg, #f0e0c8, #ffe0b0);">
+        <span>🎂</span>
+        <div class="interior-label">Торты на заказ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMO -->
+<section class="promo" id="promo">
+  <h2>Специальные предложения</h2>
+  <p>Приходите к нам — здесь всегда тепло, вкусно и по-домашнему</p>
+  <div class="promo-cards">
+    <div class="promo-card">
+      <div class="promo-icon">☕</div>
+      <h3>Кофе + выпечка</h3>
+      <p>Идеальное сочетание — кофе и свежая булочка к нему</p>
+    </div>
+    <div class="promo-card">
+      <div class="promo-icon">🎂</div>
+      <h3>Торт на заказ</h3>
+      <p>Закажите торт к празднику из нашего ассортимента</p>
+    </div>
+    <div class="promo-card">
+      <div class="promo-icon">🛍️</div>
+      <h3>Всё с собой</h3>
+      <p>Упакуем десерты и кофе для быстрого перекуса в дороге</p>
+    </div>
+  </div>
+  <a href="#contact" class="btn-white">Узнать где мы находимся</a>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal">
+        <p class="section-label">Найти нас</p>
+        <h2 class="section-title">Заходите в гости</h2>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Адрес</div>
+            <div class="contact-value">Укажите ваш адрес<br>Беларусь</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-label">Режим работы</div>
+            <div class="contact-value">Пн–Пт: 8:00 – 20:00<br>Сб–Вс: 9:00 – 19:00</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Телефон</div>
+            <div class="contact-value">+375 XX XXX XX XX</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">💬</div>
+          <div>
+            <div class="contact-label">Соцсети</div>
+            <div class="contact-value">ВКонтакте · Instagram · Telegram</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="map-placeholder" onclick="alert('Добавьте ссылку на Яндекс.Карты или Google Maps')">
+          <div class="map-pin">📍</div>
+          <div style="font-size:1rem; color:rgba(255,248,238,0.7);">СмеТанник</div>
+          <div>Нажмите, чтобы открыть карту</div>
+          <div style="margin-top:16px; font-size:0.75rem; opacity:0.5;">Вставьте iframe Яндекс.Карт или Google Maps</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">СмеТанник</div>
+  <div class="footer-sub">кофе · выпечка · десерты</div>
+  <div class="footer-line"></div>
+  <div class="footer-copy">© 2026 СмеТанник. Все права защищены.</div>
+</footer>
+
+<script>
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Menu tabs
+  function showTab(id) {
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+</body>
+</html>
